@@ -1,25 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm"
-
-export enum SyslogLevel {
-    ERROR = 4,
-    WARNING = 3,
-    INFO = 2,
-    DEBUG = 1,
-}
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { SyslogLevel } from "@workspace/api";
 
 @Entity()
 export class Syslog {
-    @PrimaryGeneratedColumn()
-    id!: number
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column({
-        type: "int",
-    })
-    level!: SyslogLevel
+  @Column({
+    type: "int",
+  })
+  level!: SyslogLevel;
 
-    @Column()
-    content!: string
+  @Column()
+  content!: string;
 
-    @CreateDateColumn()
-    createdAt!: Date
+  @CreateDateColumn()
+  createdAt!: Date;
 }
