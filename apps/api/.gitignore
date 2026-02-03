@@ -1,0 +1,6 @@
+/dist
+/node_modules
+*.js
+!eslint.config.js
+!src/**/*.js
+!test/**/*.js
