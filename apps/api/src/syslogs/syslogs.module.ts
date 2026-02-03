@@ -1,7 +1,7 @@
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Syslog } from '@workspace/db';
+import { Syslog } from '../db';
 import { SyslogsService } from './syslogs.service';
 import { SyslogsController } from './syslogs.controller';
 

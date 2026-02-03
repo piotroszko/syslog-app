@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, MoreThanOrEqual } from 'typeorm';
-import { Syslog, SyslogLevel } from '@workspace/db';
+import { Syslog, SyslogLevel } from '../db';
 
 @Injectable()
 export class SyslogsService {
