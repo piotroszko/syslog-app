@@ -1,4 +1,4 @@
-import { SyslogView } from "./syslog-view";
+import { SyslogView } from "../modules/syslog/syslog-view";
 
 export default function Page() {
   return (

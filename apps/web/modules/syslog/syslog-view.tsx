@@ -8,10 +8,11 @@ import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SelectField } from "@workspace/ui/components/select-field";
 import { SyslogTable } from "@/modules/syslog/table";
+import { Spinner } from "@workspace/ui/components/spinner";
 
 export const SyslogView = () => {
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 1, 1),
+    from: new Date(new Date().getFullYear(), 0, 1),
     to: addDays(new Date(new Date().getFullYear(), 1, 1), 1),
   });
   const [level, setLevel] = useState<SyslogLevel | undefined>(undefined);
@@ -23,7 +24,11 @@ export const SyslogView = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
+        <Spinner className="size-10" />
+      </div>
+    );
   }
 
   if (error) {
@@ -40,7 +45,7 @@ export const SyslogView = () => {
             onValueChange={(value) => setLevel(SyslogLevel[value as keyof typeof SyslogLevel])}
             label="Level"
             options={[
-              { value: undefined, label: "All", key: "all" },
+              { value: undefined!, label: "All", key: "all" },
               ...Object.keys(SyslogLevel)
                 .filter((level) => isNaN(Number(level)))
                 .map((level) => ({
