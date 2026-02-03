@@ -4,7 +4,7 @@ import { useSyslogs } from "@/hooks/use-syslogs";
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Syslog, SyslogLevel } from "@workspace/api";
 import { Badge } from "@workspace/ui/components/badge";
-import { DatePickerWithRange } from "@workspace/ui/components/range-picker";
+import { DatePickerWithRangeField } from "@workspace/ui/components/range-picker-field";
 import {
   Table,
   TableBody,
@@ -96,14 +96,20 @@ export const SyslogTable = () => {
   return (
     <div className="w-full h-full flex flex-col gap-4">
       <div className="flex gap-4">
-        <DatePickerWithRange date={date} setDate={setDate} label="Date Range" />
+        <DatePickerWithRangeField date={date} setDate={setDate} label="Date Range" />
         <div className="flex flex-col justify-end">
-          <Select>
+          <Select
+            value={SyslogLevel[level ?? 0]}
+            onValueChange={(value) => setLevel(SyslogLevel[value as keyof typeof SyslogLevel])}
+          >
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select Level" />
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
+                <SelectItem key={undefined} value={undefined}>
+                  All
+                </SelectItem>
                 {Object.keys(SyslogLevel)
                   .filter((level) => isNaN(Number(level)))
                   .map((level) => (

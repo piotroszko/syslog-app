@@ -14,7 +14,7 @@ interface DatePickerWithRangeProps {
   label?: string;
 }
 
-export function DatePickerWithRange({ date, setDate, label }: DatePickerWithRangeProps) {
+export function DatePickerWithRangeField({ date, setDate, label }: DatePickerWithRangeProps) {
   return (
     <Field className="w-60">
       <FieldLabel htmlFor="date-picker-range">{label}</FieldLabel>
