@@ -3,7 +3,7 @@
 import { useSyslogs } from "@/hooks/use-syslogs";
 import { SyslogLevel } from "@workspace/api";
 import { DatePickerWithRangeField } from "@workspace/ui/components/range-picker-field";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SelectField } from "@workspace/ui/components/select-field";
