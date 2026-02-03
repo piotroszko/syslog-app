@@ -35,17 +35,15 @@ export const SyslogView = () => {
     return <div>Error: {error.message} </div>;
   }
 
-  const options = useMemo(() => {
-    return [
-      { value: undefined!, label: "All", key: "all" },
-      ...Object.keys(SyslogLevel)
-        .filter((level) => isNaN(Number(level)))
-        .map((level) => ({
-          value: level,
-          label: level,
-        })),
-    ];
-  }, []);
+  const options = [
+    { value: undefined!, label: "All", key: "all" },
+    ...Object.keys(SyslogLevel)
+      .filter((level) => isNaN(Number(level)))
+      .map((level) => ({
+        value: level,
+        label: level,
+      })),
+  ];
 
   const onLevelChange = (value: string | undefined) => {
     setLevel(SyslogLevel[value as keyof typeof SyslogLevel]);

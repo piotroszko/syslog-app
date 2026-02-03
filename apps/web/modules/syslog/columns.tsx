@@ -4,6 +4,10 @@ import { getLevelText } from "./level.cell";
 
 export const columns: ColumnDef<SyslogType>[] = [
   {
+    accessorKey: "id",
+    header: "ID",
+  },
+  {
     accessorKey: "level",
     header: "Level",
     cell: ({ getValue }) => getLevelText(getValue() as number),
