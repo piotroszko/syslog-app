@@ -9,12 +9,19 @@ COPY packages/api/package*.json ./packages/api/
 COPY packages/eslint-config/package*.json ./packages/eslint-config/
 COPY packages/typescript-config/package*.json ./packages/typescript-config/
 COPY apps/web/package*.json ./apps/web/
-RUN npm ci --workspace=web --include-workspace-root
+
+# Copy packages source for workspace linking
+COPY packages ./packages
+
+RUN npm ci
+
+# Build workspace packages
+RUN cd packages/api && npm run build
 
 FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/packages ./packages
 COPY package*.json ./
-COPY packages ./packages
 COPY apps/web ./apps/web
 
 WORKDIR /app/apps/web
