@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build artifacts
+.next
+dist
+.turbo
+.git
+.gitignore
+
+# Development files
+*.md
+*.log
+.env*
+.vscode
+
+# Test files
+coverage
+*.spec.ts
+test
+
+# OS files
+.DS_Store
+Thumbs.db
