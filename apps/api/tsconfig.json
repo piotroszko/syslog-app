@@ -4,12 +4,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "./dist",
-    "baseUrl": "./",
-    "paths": {
-      "@workspace/api": [
-        "../../packages/api/src/index.ts"
-      ]
-    }
+    "baseUrl": "./"
   },
   "include": [
     "src",
