@@ -1,2 +1,2 @@
-export * from "./data-source"
-export * from "./entity/syslog"
+export * from "./data-source.js"
+export * from "./entity/syslog.js"

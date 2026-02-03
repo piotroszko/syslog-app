@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Syslog } from "./entity/syslog"
+import { Syslog } from "./entity/syslog.js"
 import path from "path"
 
 export const AppDataSource = new DataSource({
