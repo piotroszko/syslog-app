@@ -23,18 +23,6 @@ export const SyslogView = () => {
     endDate: date?.to?.toISOString(),
   });
 
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
-        <Spinner className="size-10" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error.message} </div>;
-  }
-
   const options = [
     { value: undefined!, label: "All", key: "all" },
     ...Object.keys(SyslogLevel)
@@ -48,6 +36,18 @@ export const SyslogView = () => {
   const onLevelChange = (value: string | undefined) => {
     setLevel(SyslogLevel[value as keyof typeof SyslogLevel]);
   };
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
+        <Spinner className="size-10" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error.message} </div>;
+  }
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
