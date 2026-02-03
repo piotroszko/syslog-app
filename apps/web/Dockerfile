@@ -10,12 +10,10 @@ COPY packages/eslint-config/package*.json ./packages/eslint-config/
 COPY packages/typescript-config/package*.json ./packages/typescript-config/
 COPY apps/web/package*.json ./apps/web/
 
-# Copy packages source for workspace linking
 COPY packages ./packages
 
 RUN npm ci
 
-# Build workspace packages
 RUN cd packages/api && npm run build
 
 FROM base AS build

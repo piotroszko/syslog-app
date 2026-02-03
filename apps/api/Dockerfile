@@ -2,20 +2,16 @@ FROM node:20-alpine AS base
 WORKDIR /app
 
 FROM base AS deps
-# Copy all package.json files
 COPY package*.json ./
 COPY packages/api/package*.json ./packages/api/
 COPY packages/eslint-config/package*.json ./packages/eslint-config/
 COPY packages/typescript-config/package*.json ./packages/typescript-config/
 COPY apps/api/package*.json ./apps/api/
 
-# Copy packages source (needed for workspace linking and building)
 COPY packages ./packages
 
-# Install all dependencies
 RUN npm ci
 
-# Build the @workspace/api package BEFORE the main app
 RUN cd packages/api && npm run build
 
 FROM base AS build
@@ -24,7 +20,6 @@ COPY --from=deps /app/packages ./packages
 COPY package*.json ./
 COPY apps/api ./apps/api
 
-# Build the API
 WORKDIR /app/apps/api
 RUN npx nest build
 
