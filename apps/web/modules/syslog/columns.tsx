@@ -1,8 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Syslog } from "@workspace/api";
+import { SyslogType } from "@workspace/api";
 import { getLevelText } from "./level.cell";
 
-export const columns: ColumnDef<Syslog>[] = [
+export const columns: ColumnDef<SyslogType>[] = [
   {
     accessorKey: "level",
     header: "Level",

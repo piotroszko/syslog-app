@@ -4,7 +4,7 @@ export interface SyslogDto {
   level?: SyslogLevel;
 }
 
-export interface Syslog {
+export interface SyslogType {
   id: string;
   createdAt: Date;
   level: number;
@@ -12,7 +12,7 @@ export interface Syslog {
 }
 
 export interface SyslogResponseDto {
-  list: Syslog[];
+  list: SyslogType[];
   total: number;
 }
 

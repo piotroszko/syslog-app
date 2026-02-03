@@ -8,10 +8,10 @@ import {
 } from "@workspace/ui/components/table";
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "./columns";
-import { Syslog } from "@workspace/api";
+import { SyslogType } from "@workspace/api";
 
 interface SyslogTableProps {
-  data: Syslog[];
+  data: SyslogType[];
 }
 
 export const SyslogTable = ({ data }: SyslogTableProps) => {

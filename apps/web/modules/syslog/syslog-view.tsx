@@ -3,7 +3,7 @@
 import { useSyslogs } from "@/hooks/use-syslogs";
 import { SyslogLevel } from "@workspace/api";
 import { DatePickerWithRangeField } from "@workspace/ui/components/range-picker-field";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SelectField } from "@workspace/ui/components/select-field";
@@ -35,6 +35,22 @@ export const SyslogView = () => {
     return <div>Error: {error.message} </div>;
   }
 
+  const options = useMemo(() => {
+    return [
+      { value: undefined!, label: "All", key: "all" },
+      ...Object.keys(SyslogLevel)
+        .filter((level) => isNaN(Number(level)))
+        .map((level) => ({
+          value: level,
+          label: level,
+        })),
+    ];
+  }, []);
+
+  const onLevelChange = (value: string | undefined) => {
+    setLevel(SyslogLevel[value as keyof typeof SyslogLevel]);
+  };
+
   return (
     <div className="w-full h-full flex flex-col gap-4">
       <div className="flex gap-4">
@@ -42,17 +58,9 @@ export const SyslogView = () => {
         <div className="flex flex-col justify-end">
           <SelectField
             value={SyslogLevel[level ?? 0]}
-            onValueChange={(value) => setLevel(SyslogLevel[value as keyof typeof SyslogLevel])}
+            onValueChange={onLevelChange}
             label="Level"
-            options={[
-              { value: undefined!, label: "All", key: "all" },
-              ...Object.keys(SyslogLevel)
-                .filter((level) => isNaN(Number(level)))
-                .map((level) => ({
-                  value: level,
-                  label: level,
-                })),
-            ]}
+            options={options}
           />
         </div>
       </div>
