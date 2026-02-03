@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, MoreThanOrEqual } from 'typeorm';
 import { Syslog, SyslogLevel } from '../db';
+import { SyslogDto } from '@workspace/api';
 
 @Injectable()
 export class SyslogsService {
@@ -11,7 +12,7 @@ export class SyslogsService {
         private syslogRepository: Repository<Syslog>,
     ) { }
 
-    async findAll(query: { startDate?: string; endDate?: string; level?: string }) {
+    async findAll(query: SyslogDto) {
         const where: any = {};
 
         if (query.startDate && query.endDate) {
