@@ -20,10 +20,18 @@ async function seed() {
             { level: SyslogLevel.ERROR, content: "API rate limit exceeded." },
         ];
 
-        for (const log of syslogs) {
+        const baseDate = new Date();
+
+        for (let i = 0; i < syslogs.length; i++) {
+            const log = syslogs[i]!;
             const syslog = new Syslog();
             syslog.level = log.level;
             syslog.content = log.content;
+
+            const logDate = new Date(baseDate);
+            logDate.setDate(logDate.getDate() - (syslogs.length - 1 - i));
+            syslog.createdAt = logDate;
+
             await syslogRepository.save(syslog);
         }
 
