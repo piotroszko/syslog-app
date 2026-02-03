@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Syslog } from "./entity/syslog.js"
+import { Syslog } from "./entity/syslog"
 import path from "path"
 import { TypeOrmModuleOptions } from "@nestjs/typeorm"
 
