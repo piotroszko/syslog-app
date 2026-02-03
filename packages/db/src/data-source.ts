@@ -2,6 +2,7 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { Syslog } from "./entity/syslog.js"
 import path from "path"
+import { TypeOrmModuleOptions } from "@nestjs/typeorm"
 
 export const AppDataSource = new DataSource({
     type: "sqlite",
@@ -13,4 +14,14 @@ export const AppDataSource = new DataSource({
     subscribers: [],
 })
 
-export * from "./entity/syslog"
+export const getDataSourceOptions = (dbPath: string): TypeOrmModuleOptions => {
+    return {
+        type: "sqlite",
+        database: dbPath,
+        synchronize: true,
+        logging: false,
+        entities: [Syslog],
+        migrations: [],
+        subscribers: [],
+    }
+}
