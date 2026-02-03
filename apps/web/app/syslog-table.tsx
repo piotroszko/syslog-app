@@ -16,6 +16,14 @@ import {
 import { ReactNode, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
 
 const getLevelText = (level: number): ReactNode => {
   switch (level) {
@@ -87,7 +95,27 @@ export const SyslogTable = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      <DatePickerWithRange date={date} setDate={setDate} label="Date Range" />
+      <div className="flex gap-4">
+        <DatePickerWithRange date={date} setDate={setDate} label="Date Range" />
+        <div className="flex flex-col justify-end">
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Level" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {Object.keys(SyslogLevel)
+                  .filter((level) => isNaN(Number(level)))
+                  .map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div className="overflow-hidden rounded-md border w-full h-full">
         <Table>
           <TableHeader>

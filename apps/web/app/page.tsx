@@ -1,9 +1,9 @@
-import { SyslogTable } from "./syslog-table"
+import { SyslogTable } from "./syslog-table";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-svh p-8">
+    <div className="flex justify-center min-h-svh p-8 max-w-7xl mx-auto">
       <SyslogTable />
     </div>
-  )
+  );
 }

@@ -16,7 +16,7 @@ interface DatePickerWithRangeProps {
 
 export function DatePickerWithRange({ date, setDate, label }: DatePickerWithRangeProps) {
   return (
-    <Field className="mx-auto w-60">
+    <Field className="w-60">
       <FieldLabel htmlFor="date-picker-range">{label}</FieldLabel>
       <Popover>
         <PopoverTrigger asChild>
