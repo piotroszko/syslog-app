@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
+import { SelectField } from "@workspace/ui/components/select-field";
 
 const getLevelText = (level: number): ReactNode => {
   switch (level) {
@@ -98,28 +99,20 @@ export const SyslogTable = () => {
       <div className="flex gap-4">
         <DatePickerWithRangeField date={date} setDate={setDate} label="Date Range" />
         <div className="flex flex-col justify-end">
-          <Select
+          <SelectField
             value={SyslogLevel[level ?? 0]}
             onValueChange={(value) => setLevel(SyslogLevel[value as keyof typeof SyslogLevel])}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem key={undefined} value={undefined}>
-                  All
-                </SelectItem>
-                {Object.keys(SyslogLevel)
-                  .filter((level) => isNaN(Number(level)))
-                  .map((level) => (
-                    <SelectItem key={level} value={level}>
-                      {level}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+            label="Level"
+            options={[
+              { value: undefined, label: "All", key: "all" },
+              ...Object.keys(SyslogLevel)
+                .filter((level) => isNaN(Number(level)))
+                .map((level) => ({
+                  value: level,
+                  label: level,
+                })),
+            ]}
+          />
         </div>
       </div>
       <div className="overflow-hidden rounded-md border w-full h-full">
